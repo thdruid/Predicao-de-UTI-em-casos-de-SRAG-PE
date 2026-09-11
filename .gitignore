@@ -24,8 +24,9 @@
 *.7z
 dados_relatorio*.json
 
-# Recorte derivado do dataset público do OpenDataSUS
-!/data/raw/srag_pediatrico_filtrado.csv
+# Diagnósticos locais que dependem de relatórios não distribuídos
+/scripts/investigar_reprodutibilidade.py
+/scripts/comparar_desempates.py
 
 # Segredos e credenciais locais
 .env

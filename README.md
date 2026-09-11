@@ -17,7 +17,7 @@ Utilizo o arquivo `srag_pediatrico_filtrado.csv`, derivado do arquivo local `INF
 
 Trabalho com 2.133 registros e 197 colunas na entrada. Após as regras de limpeza da Entrega 2, utilizo 2.050 registros e 22 atributos: 1.947 casos sem UTI e 103 com UTI. As datas de notificação do recorte incluem 2019 e 2020.
 
-**Fonte dos dados:** Ministério da Saúde, [OpenDataSUS — SIVEP-Gripe / SRAG](https://dadosabertos.saude.gov.br/dataset/srag-2019-a-2026). O arquivo do projeto é um recorte derivado da base pública, preparado para este estudo. Os dados publicados no portal são disponibilizados como dados abertos e passam por processo de anonimização informado pelo Ministério da Saúde. Consulte [docs/dataset.md](docs/dataset.md) para a origem, os filtros, a atribuição e as colunas utilizadas.
+**Fonte dos dados:** Ministério da Saúde, [OpenDataSUS — SIVEP-Gripe / SRAG](https://dadosabertos.saude.gov.br/dataset/srag-2019-a-2026). Preparei uma versão derivada para este estudo, com filtragem e tratamento de problemas dos dados. Mantenho o CSV apenas localmente, pois não confirmei as condições de redistribuição dessa versão. Documento a origem, as transformações e as colunas utilizadas em [docs/dataset.md](docs/dataset.md).
 
 ## Metodologia
 
@@ -83,18 +83,20 @@ Organizei os arquivos por finalidade:
 README.md
 requirements.txt
 config/environment/       # versões e dependências
-data/raw/                 # CSV de entrada e recorte dos dados públicos
+data/raw/                 # documentação e CSV de entrada apenas local
 data/processed/           # exportação opcional da base limpa
 data/reference/           # referências históricas locais
 docs/                     # autoria, dados e resultados
 notebooks/modeling/       # notebook principal
-scripts/                  # execução e diagnósticos
+scripts/                  # execução e conferência da origem
 results/tables/           # tabelas geradas
 results/reports/          # relatórios e cópias executadas
 results/figures/          # figuras geradas
 ```
 
 ## Execução local
+
+Antes de executar, disponibilizo localmente o CSV descrito em [docs/dataset.md](docs/dataset.md), em `data/raw/srag_pediatrico_filtrado.csv`. Ele não acompanha o repositório; somente clonar o código e instalar as dependências não permite repetir o treinamento.
 
 Para executar localmente com Python 3.12 no Windows, utilizo os comandos abaixo na raiz:
 

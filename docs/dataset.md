@@ -1,6 +1,6 @@
 # Dados utilizados
 
-Utilizo `srag_pediatrico_filtrado.csv` como entrada do estudo. Ele é um recorte derivado da base pública de SRAG/SIVEP-Gripe do Ministério da Saúde, disponibilizada no portal OpenDataSUS.
+Utilizo `srag_pediatrico_filtrado.csv` como entrada do estudo. Preparei essa versão a partir dos dados de SRAG, com filtragem e tratamento de problemas dos dados. Não a apresento como cópia intacta do arquivo oficial e não a distribuo com o código.
 
 ## Preparação e conferência
 
@@ -11,7 +11,9 @@ Reconstruí o recorte a partir do arquivo local `INFLUD19_PE.csv` e da preparaç
 - Defino `UTI_BIN=1` para `UTI=1` e `UTI_BIN=0` para `UTI=2`.
 - Uso a lista de municípios da RMR da Entrega 1 para definir `REGIAO`; classifico os demais como `Interior de PE`. Reconheço que essa regra não verifica isoladamente a UF dos municípios fora da lista.
 
-Conferi igualdade nas 196 colunas diferentes de idade, após normalização para texto, e igualdade de idade com tolerância de ponto flutuante. Não encontrei números de notificação duplicados.
+Na versão utilizada nos experimentos, conferi a correspondência desse recorte com o arquivo local de origem. Essa conferência não estabelece igualdade com a versão atualmente disponível no portal. Não encontrei números de notificação duplicados.
+
+Também trabalhei no tratamento de valores ausentes e de outros problemas ao longo da preparação e da modelagem. Distingo o CSV de entrada da matriz usada pelos modelos: o CSV ainda contém valores ausentes, que trato no pipeline. Nos sintomas, recodifico 1 para presença, 2 para ausência e 9 para ausente; preservo campos vazios para imputação. Nas comorbidades, recodifico apenas 1 como presença e os demais valores como zero. Ajusto a imputação durante o treino de cada fold, conforme o notebook.
 
 ## Características da entrada
 
@@ -21,9 +23,11 @@ Identifiquei números de notificação, datas de nascimento e atendimento e camp
 
 ## Origem, licença e disponibilidade
 
-A fonte declarada é o Ministério da Saúde — [OpenDataSUS, SIVEP-Gripe / SRAG](https://dadosabertos.saude.gov.br/dataset/srag-2019-a-2026). O portal disponibiliza os dados abertos para download, inclusive em CSV, e informa que as bases publicadas passam por anonimização em conformidade com a LGPD. A página da base indica licença Creative Commons Atribuição; a redistribuição deve manter essa atribuição e o link para a fonte oficial.
+A fonte informada para o trabalho é o Ministério da Saúde — [OpenDataSUS, SIVEP-Gripe / SRAG](https://dadosabertos.saude.gov.br/dataset/srag-2019-a-2026). O portal disponibiliza dados para download e informa que suas bases passam por anonimização. Não uso essa informação como certificação da versão que preparei.
 
-O arquivo deste repositório não é o bruto baixado do portal: é o recorte `srag_pediatrico_filtrado.csv`, preparado a partir de `INFLUD19_PE.csv` conforme os filtros descritos acima. Não adicionei informações identificáveis ao recorte.
+Não confirmei uma licença específica aplicável à redistribuição desta versão derivada. Por isso, mantenho o CSV apenas localmente e disponibilizo o código, os resultados agregados e a descrição das transformações. Não atribuo automaticamente ao dataset a licença indicada para o conteúdo do site.
+
+Para executar o notebook, utilizo uma cópia local em `data/raw/srag_pediatrico_filtrado.csv`, com o formato descrito em [data/README.md](../data/README.md). O link do portal identifica a fonte informada; não garante que um download atual corresponda exatamente à versão dos experimentos.
 
 **Atribuição:** Ministério da Saúde — OpenDataSUS, Sistema de Informação da Vigilância Epidemiológica da Gripe (SIVEP-Gripe), base de Síndrome Respiratória Aguda Grave (SRAG). Disponível em: https://dadosabertos.saude.gov.br/dataset/srag-2019-a-2026.
 
