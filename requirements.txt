@@ -1,0 +1,11 @@
+# Dependências diretas; versões do ambiente original não foram fornecidas.
+numpy
+pandas
+matplotlib
+scikit-learn
+imbalanced-learn
+ipython
+jupyterlab
+ipykernel
+nbclient
+nbformat
